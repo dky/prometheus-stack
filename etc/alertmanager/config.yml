@@ -117,5 +117,5 @@ receivers:
 
 - name: slack_prom
   slack_configs:
-  - api_url: https://hooks.slack.com/services/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
+  - api_url: https://hooks.slack.com/services/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
     channel: '#prometheus'
