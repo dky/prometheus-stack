@@ -57,3 +57,12 @@ services:
     restart: always
     ports:
       - 9091:9091
+
+  nodeexporter:
+    image: prom/node-exporter:v0.16.0
+    container_name: nodexporter
+    restart: always
+    ports:
+      - 9100:9100
+    links:
+      - prometheus
