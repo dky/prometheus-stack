@@ -1,6 +1,19 @@
 version: '3.1'
 
 services:
+  grafana:
+    image: grafana/grafana:5.3.2
+    container_name: grafana
+    restart: always
+    environment:
+      - "GF_SECURITY_ADMIN_PASSWORD=install"
+    ports:
+      - 3000:3000
+    volumes:
+      - $PWD/data/grafana:/var/lib/grafana
+    links:
+      - prometheus
+
   prometheus:
     image: prom/prometheus:v2.5.0
     container_name: prometheus
@@ -17,21 +30,8 @@ services:
       - '--web.console.templates=/usr/share/prometheus/consoles'
       - '--web.enable-lifecycle'
 
-  grafana:
-    image: grafana/grafana:5.3.2
-    container_name: grafana
-    restart: always
-    environment:
-      - "GF_SECURITY_ADMIN_PASSWORD=install"
-    ports:
-      - 3000:3000
-    volumes:
-      - $PWD/data/grafana:/var/lib/grafana
-    links:
-      - prometheus
-
   alertmanager:
-    image: prom/alertmanager:v0.15.2
+    image: prom/alertmanager:v0.15.3
     container_name: alertmanager
     restart: always
     ports:
@@ -52,7 +52,7 @@ services:
       - $PWD/etc/blackbox:/etc/blackbox_exporter
 
   pushgateway:
-    image: prom/pushgateway:v0.5.2
+    image: prom/pushgateway:v0.6.0
     container_name: pushgateway
     restart: always
     ports:
