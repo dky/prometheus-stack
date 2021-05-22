@@ -11,8 +11,6 @@ services:
       - 3000:3000
     volumes:
       - $PWD/data/grafana:/var/lib/grafana
-    links:
-      - prometheus
 
   prometheus:
     image: prom/prometheus:latest
@@ -64,5 +62,3 @@ services:
     restart: always
     ports:
       - 9100:9100
-    links:
-      - prometheus
