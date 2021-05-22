@@ -7,18 +7,12 @@ groups:
     labels:
       severity: critical
       env: critical
-  - alert: FlightSafetyDown
-    expr: probe_http_status_code{instance="https://www.flightsafety.com/site_login.php",job="blackbox_http_prd"} != 200
+  - alert: WebsiteDown
+    expr: probe_http_status_code{instance="https://dky.io",job="blackbox_http_prd"} != 200
     for: 2m
     labels:
       severity: critical
       env: prd
-  - alert: NginxVSTSAgentsLessThan2
-    expr: sum(up{job="nginx-dev"}) < 2
-    for: 2m
-    labels:
-      severity: critical
-      env: dev
   - alert: RootFileSystemWillFillIn4Hours
     expr: predict_linear(node_filesystem_free{job="node-exporter-prd", mountpoint="/"}[1h], 4 * 3600) < 0
     for: 5m

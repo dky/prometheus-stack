@@ -1,10 +1,7 @@
 global:
-  smtp_smarthost: 'imailgw.flightsafety.com:25'
-  smtp_from: 'prometheus-lab@flightsafety.com'
+  smtp_smarthost: 'localhost:25'
+  smtp_from: 'prometheus-lab@example.com'
   smtp_require_tls: false
-
-  http_config:
-    proxy_url: 'http://192.168.210.24:3128'
 
 templates:
 - '/etc/alertmanager/template/*.tmpl'
@@ -95,7 +92,7 @@ inhibit_rules:
 receivers:
 - name: 'DevOps.Team'
   email_configs:
-  - to: 'DevOps.Team@flightsafety.com'
+  - to: 'null@aol.com'
 
 - name: 'team-X-pager'
   email_configs:
@@ -117,5 +114,5 @@ receivers:
 
 - name: slack_prom
   slack_configs:
-  - api_url: https://hooks.slack.com/services/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
+  - api_url: https://hooks.slack.com/services/123
     channel: '#prometheus'
