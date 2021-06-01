@@ -9,6 +9,8 @@ services:
       - "GF_SECURITY_ADMIN_PASSWORD=install"
     ports:
       - 3000:3000
+    networks:
+      - prom
     volumes:
       - grafana-data:/var/lib/grafana
 
@@ -18,6 +20,8 @@ services:
     restart: always
     ports:
       - 9090:9090
+    networks:
+      - prom
     volumes:
       - $PWD/etc/prometheus:/etc/prometheus/
       - prometheus-data:/prometheus
@@ -34,6 +38,8 @@ services:
     restart: always
     ports:
       - 9093:9093
+    networks:
+      - prom
     volumes:
       - $PWD/etc/alertmanager/:/etc/alertmanager/
     command:
@@ -46,6 +52,8 @@ services:
     restart: always
     ports:
       - 9115:9115
+    networks:
+      - prom
     volumes:
       - $PWD/etc/blackbox:/etc/blackbox_exporter
 
@@ -55,6 +63,8 @@ services:
     restart: always
     ports:
       - 9091:9091
+    networks:
+      - prom
 
   nodeexporter:
     image: prom/node-exporter:latest
@@ -62,7 +72,13 @@ services:
     restart: always
     ports:
       - 9100:9100
+    networks:
+      - prom
 
 volumes:
   prometheus-data:
   grafana-data:
+
+networks:
+  prom:
+    driver: bridge
