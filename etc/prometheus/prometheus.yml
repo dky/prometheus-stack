@@ -31,6 +31,9 @@ scrape_configs:
     static_configs:
       - targets:
         - https://dky.io
+        - https://keycap.sh
+        - https://keycaps.sh
+        - https://algorithm.sh
 
     relabel_configs:
       - source_labels: [__address__]
