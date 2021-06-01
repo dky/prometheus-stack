@@ -10,7 +10,7 @@ services:
     ports:
       - 3000:3000
     volumes:
-      - $PWD/data/grafana:/var/lib/grafana
+      - grafana-data:/var/lib/grafana
 
   prometheus:
     image: prom/prometheus:latest
@@ -20,7 +20,7 @@ services:
       - 9090:9090
     volumes:
       - $PWD/etc/prometheus:/etc/prometheus/
-      - $PWD/data/prometheus:/prometheus
+      - prometheus-data:/prometheus
     command:
       - '--config.file=/etc/prometheus/prometheus.yml'
       - '--storage.tsdb.path=/prometheus'
@@ -62,3 +62,7 @@ services:
     restart: always
     ports:
       - 9100:9100
+
+volumes:
+  prometheus-data:
+  grafana-data:
