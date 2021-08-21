@@ -23,8 +23,7 @@ scrape_configs:
   - job_name: 'nodeexporter'
     static_configs:
       - targets:
-        - nodeexporter:9100
-        - pi4.dky.lan:9100
+        - jump.dky.io:9100
 
   - job_name: 'blackbox_http_check'
     metrics_path: /probe
@@ -34,8 +33,6 @@ scrape_configs:
       - targets:
         - https://dky.io
         - https://keycap.sh
-        - https://keycaps.sh
-        - https://algorithm.sh
 
     relabel_configs:
       - source_labels: [__address__]
