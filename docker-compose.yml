@@ -2,7 +2,7 @@ version: '3.1'
 
 services:
   grafana:
-    image: grafana/grafana:8.2.2
+    image: grafana/grafana:10.0.1
     container_name: grafana
     restart: always
     environment:
@@ -15,7 +15,7 @@ services:
       - grafana-data:/var/lib/grafana
 
   prometheus:
-    image: prom/prometheus:v2.31.0-rc.0
+    image: prom/prometheus:v2.45.0
     container_name: prometheus
     restart: always
     ports:
